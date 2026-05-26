@@ -36,7 +36,8 @@ SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
-DEBUG = "RENDER" not in os.environ
+# DEBUG = "RENDER" not in os.environ
+DEBUG = env.bool("DEBUG", default=False)
 
 # ALLOWED_HOSTS = []
 ALLOWED_HOSTS = ["localhost", "127.0.0.1"]

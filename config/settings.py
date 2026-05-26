@@ -40,7 +40,7 @@ SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
 DEBUG = env.bool("DEBUG", default=False)
 
 # ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "capstone-coh63.onrender.com",]
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get("RENDER_EXTERNAL_HOSTNAME")
 if RENDER_EXTERNAL_HOSTNAME:

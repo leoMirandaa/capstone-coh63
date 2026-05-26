@@ -1,0 +1,26 @@
+.catalog {
+    padding-top: 12px;
+}
+
+.catalog h1 {
+    color: darkcyan;    
+    padding-top:14px;
+}
+
+.catalog .list {
+    padding: 20px;
+    text-align: center;
+}
+
+/* Removed custom product styles as we're using Bootstrap cards now */
+
+@media(max-width:767px) {
+    /* Smartphone */
+    .catalog h1{
+        color: tomato;
+    }
+    
+    .catalog .list {
+        padding-top: 0;
+    }
+}

@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block title %} Catalog {% endblock %}
+
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/catalog.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    
+    <!-- Category Filter -->
+    <div class="row mb-4 align-items-center">
+        <div class="col-md-6">
+             {% if selected_category %}
+                <h1 class="text-primary">Check our {{ selected_category}} </h1>
+             {% else %}
+                <h1 class="text-primary">Check our amazing catalog!</h1>
+             {% endif %}            
+        </div>
+
+        <div class="col-md-6">
+            <form method="get" class="d-flex align-items-center">
+                <label for="categoryFilter" class="form-label me-2 mb-0">Filter by Category:</label>
+                <select name="category" class="form-select" id="categoryFilter" style="max-width: 200px;" onchange="this.form.submit()">
+                    <option value="">All Categories</option>
+                    {% for category in categories %}
+                    <option value="{{ category.name }}" {% if selected_category == category.name %} selected {% endif %}>{{ category.name }}</option>
+                    {% endfor %}
+                </select>
+            </form>
+        </div>
+    </div>
+    
+    <div class="row">
+        {% for prod in product_list %}
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4 product-card" data-category="{{ prod.category.id }}">
+            <div class="card h-100 shadow-sm">
+                {% if prod.image %}
+                <img src="{{prod.image.url}}" class="card-img-top" alt="{{ prod.title }}" style="height: 200px; object-fit: cover;">
+                {% else %}
+                <img src="https://demofree.sirv.com/nope-not-here.jpg" class="card-img-top" alt="No image" style="height: 200px; object-fit: cover;">
+                {% endif %}
+                
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">{{ prod.title }}</h5>
+                    <p class="card-text text-muted">{{ prod.category.name }}</p>
+                    
+                    <div class="mt-auto">
+                        <p class="card-text">
+                            <span class="badge bg-secondary me-2">Stock: {{ prod.stock }}</span>
+                            <span class="text-danger fw-bold fs-5">$ {{ prod.price }}</span>
+                        </p>
+                        <form method="post" action="{% url 'cart_add' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="product_id" value="{{prod.id}}">
+                            <label>Quantity:</label>
+                            <input type="number" min="1" max="10" name="quantity" value="1">
+                            <button class="btn btn-primary w-100">Add to cart</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script>
+document.getElementById('categoryFilter').addEventListener('change', function() {
+    const selectedCategory = this.value;
+    const productCards = document.querySelectorAll('.product-card');
+    
+    productCards.forEach(card => {
+        const categoryId = card.getAttribute('data-category');
+        if (selectedCategory === '' || categoryId === selectedCategory) {
+            card.style.display = 'block';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+});
+</script>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/public.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8">
+            <h1 class="display-4 mb-4">About This Project</h1>
+            <p class="lead">This is a capstone project for a full stack development course, showcasing the integration of various technologies to build a comprehensive web application.</p>
+            
+            <h2 class="mt-4">Project Overview</h2>
+            <p>The application demonstrates modern web development practices using Django as the backend framework, with HTML, CSS, and Bootstrap for the frontend. It includes user authentication, a product store, and notes functionality.</p>
+            
+            <h3>Technologies Used</h3>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><strong>Backend:</strong> Django (Python)</li>
+                <li class="list-group-item"><strong>Frontend:</strong> HTML, CSS, Bootstrap</li>
+                <li class="list-group-item"><strong>Database:</strong> SQLite (development), PostgreSQL (production)</li>
+                <li class="list-group-item"><strong>Authentication:</strong> Django's built-in auth system</li>
+            </ul>
+            
+            <h3>Features Implemented</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Store Management</h5>
+                            <p class="card-text">Full CRUD operations for products with image uploads and categorization.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card mb-3">
+                        <h5 class="card-title">Notes System</h5>
+                        <p class="card-text">Personal note-taking functionality with organization and search capabilities.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <img src="{% static 'images/homer.png' %}" alt="About the Project" class="img-fluid rounded shadow">
+        </div>
+    </div>
+</div>
+{% endblock %}

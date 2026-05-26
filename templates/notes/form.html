@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}New Note{% endblock %}
+
+{% block content %}
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-sm border-0">
+                <div class="card-body p-4 p-md-5">
+                    <div class="mb-4">
+                        <h1 class="display-6 mb-2">Create a Study Note</h1>
+                        <p class="text-muted mb-0">Share a topic, exercise, or resource you want to come back to later.</p>
+                    </div>
+
+                    <form method="post">
+                        {% csrf_token %}
+
+                        <div class="mb-3">
+                            <label for="{{ form.title.id_for_label }}" class="form-label">Title</label>
+                            {{ form.title }}
+                            {% if form.title.errors %}
+                            <div class="text-danger small mt-1">{{ form.title.errors }}</div>
+                            {% endif %}
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="{{ form.description.id_for_label }}" class="form-label">Description</label>
+                            {{ form.description }}
+                            {% if form.description.errors %}
+                            <div class="text-danger small mt-1">{{ form.description.errors }}</div>
+                            {% endif %}
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="{{ form.url.id_for_label }}" class="form-label">Optional URL</label>
+                            {{ form.url }}
+                            {% if form.url.errors %}
+                            <div class="text-danger small mt-1">{{ form.url.errors }}</div>
+                            {% endif %}
+                        </div>
+
+                        <div class="d-flex gap-2 flex-wrap">
+                            <button class="btn btn-primary" type="submit">Post Note</button>
+                            <a href="{% url 'notes_list' %}" class="btn btn-outline-secondary">Back to Notes</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

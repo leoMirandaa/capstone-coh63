@@ -1,0 +1,18 @@
+# create venv:
+python3 -m venv venv
+
+# activate venv:
+mac: source venv/bin/activate
+win: venv\Scripts\activate
+
+
+# install django
+python3 -m pip install django whisenoise pillow django-env
+
+
+# create django project
+django-admin startproject config  .
+
+
+# create an app
+python3 manage.py startapp public

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/public.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row align-items-center">
+        <div class="col-md-6">
+            <h1 class="display-4">Welcome to the Capstone Project</h1>
+            <p class="lead">This is a full-stack web application built as a capstone project for a comprehensive full-stack development course.</p>
+            <a href="{% url 'catalog' %}" class="btn btn-primary btn-lg">Explore Store</a>
+            <a href="{% url 'about' %}" class="btn btn-outline-secondary btn-lg ms-2">Learn More</a>
+        </div>
+        <div class="col-md-6">
+            <img src="{% static 'images/coffee-coding.webp' %}" alt="Capstone Project" class="img-fluid rounded">
+        </div>
+    </div>
+    
+    <div class="row mt-5">
+        <div class="col-md-4 text-center">
+            <i class="fas fa-store fa-3x text-primary mb-3"></i>
+            <h3>Store Functionality</h3>
+            <p>Browse and manage products in our online store with full CRUD operations.</p>
+        </div>
+        <div class="col-md-4 text-center">
+            <i class="fas fa-sticky-note fa-3x text-success mb-3"></i>
+            <h3>Notes</h3>
+            <p>Create and organize personal notes for productivity and organization.</p>
+        </div>
+        <div class="col-md-4 text-center">
+            <i class="fas fa-user-shield fa-3x text-warning mb-3"></i>
+            <h3>User Authentication</h3>
+            <p>Secure login and registration system with Django's built-in auth.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
